@@ -1,7 +1,5 @@
 # 🎈**알고리즘 스터디**
 
-[문제 보관함](https://www.notion.so/f879e657f3f4413e9eaaa42d9d9f44cf)
-
 <br>
 
 ## 📘 스터디 계획
@@ -10,7 +8,7 @@
 
 - 하루에 한 문제 1시간 안에 푸는 것을 목표로 한다.
 
-- 스터디 시간 이전에 알고리즘 문제를 선정하여 [wiki](https://github.com/heeya15/Algoritm_Study/wiki) 작성
+- 스터디 시간 이전에 알고리즘 문제를 선정하여 [Notion](https://www.notion.so/ksh103/f879e657f3f4413e9eaaa42d9d9f44cf) 작성
 
 - 해당 스터디 저장소를 Fork 한 뒤 그 저장소를 clone
 
