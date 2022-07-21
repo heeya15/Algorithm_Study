@@ -7,7 +7,6 @@ def solution(price, money, count):
     # 음수면 해당값 양수로 바꾸고 리턴
     if money < 0:
         answer = abs(money)
-    # 돈이 안부족하면 0 리턴
     else:
         answer = 0
 
