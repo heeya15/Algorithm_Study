@@ -19,6 +19,8 @@ public class boj_14890 {
 		rowMap = new int[N][N];
 		calMap = new int[N][N];
 		
+		int cnt = 0;
+		
 		for(int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine());
 			for(int j = 0; j < N; j++) {
@@ -26,7 +28,6 @@ public class boj_14890 {
 			}
 		}
 		
-		int cnt = 0;
 		for(int i = 0; i < N; i++) {
 			if(check(rowMap[i])) cnt++;
 			if(check(calMap[i])) cnt++;
@@ -35,9 +36,11 @@ public class boj_14890 {
 		System.out.print(cnt);
 	}
 	
+	
 	static boolean check(int[] map) {
-		boolean[] flag = new boolean[N];
 		
+		boolean[] flag = new boolean[N];
+
 		for(int i = 1; i < N; i++) {
 			// 1. 같은 높이 통과
 			if(map[i- 1] == map[i]) continue;
@@ -48,38 +51,26 @@ public class boj_14890 {
 			// 3. 오르막
 			if(map[i - 1] < map[i]) {
 				
-				// 범위 체크
-				if(0 > i - L - 1) return false;
-				
 				for(int j = i - 1; j >= i - L; j--) {
+					if(j < 0 || map[i - 1] != map[j] || flag[j]) return false;
 					
-					if(map[i - 1] == map[j] && !flag[j]) {
-						flag[j] = true;
-						
-					}else {
-						return false;
-					}
+					flag[j] = true;
 				}
 				
 			}
 			// 4. 내리막
 			else if(map[i - 1] > map[i]) { 
 				
-				// 범위 체크
-				if(N < i + L) return false;
-				
 				for(int j = i; j < i + L; j++) {
-					if(map[i] == map[j] && !flag[j]) {
-						flag[j] = true;
-						
-					}else {
-						return false;
-					}
+					if(j >= N || map[i] != map[j] || flag[j]) return false;
+					
+					flag[j] = true;
 				}
 			}
 		}
-
+		
 		return true;
+
 	}
 
 }
