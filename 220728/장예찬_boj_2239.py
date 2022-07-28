@@ -1,0 +1,6 @@
+from sys import stdin
+
+board = [list(map(int, stdin.readline().split())) for _ in range(9)]
+
+# 스도쿠 어렵다....
+# 살려줘...
