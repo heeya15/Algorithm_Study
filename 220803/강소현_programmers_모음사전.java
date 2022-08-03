@@ -6,9 +6,7 @@ class Solution {
     static ArrayList<String> list = new ArrayList<>();
     public int solution(String word) {    
         Solve("", 0);
-        
-        Collections.sort(list); // 정렬
-        
+    
         return list.indexOf(word) + 1;
     }
     
