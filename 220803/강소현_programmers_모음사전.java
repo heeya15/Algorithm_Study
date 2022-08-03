@@ -10,7 +10,6 @@ class Solution {
         return list.indexOf(word) + 1;
     }
     
-    // 부분집합
     static void Solve(String str, int cnt) {
         if(cnt == 5) {
             return;
