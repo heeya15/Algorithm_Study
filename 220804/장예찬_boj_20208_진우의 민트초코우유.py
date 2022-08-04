@@ -1,7 +1,7 @@
 from sys import stdin
 from collections import defaultdict
 
-N, M, H = map(int, input().split())
+N, M, H = map(int, stdin.readline().split())
 world = [list(map(int, stdin.readline().split())) for _ in range(N)]
 milk = []
 my = ()
@@ -15,31 +15,31 @@ for x in range(N):
             milk.append((x, y))
         if world[x][y] == 1:
             my = (x, y)
-milk.append(my)
 milkT = len(milk)
-
 distDict = defaultdict(list)
 
 for i in range(milkT):
+    distDict[-1].append(distance(milk[i], my))
     for j in range(milkT):
         distDict[i].append(distance(milk[i], milk[j]))
 
-startIdx = len(milk) - 1
+answer, startIdx = 0, -1
 visited = [False] * milkT
 
-answer = 0
+milkRange = range(milkT)
 
 def dfs(strIdx, cnt, M):
     global answer
-    for i in range(milkT):
-        if visited[i] or distDict[strIdx][i] > M:
-            continue
-        if i == startIdx:
-            answer = answer if answer > cnt else cnt
-            return
-        visited[i] = True
-        dfs(i, cnt + 1, M - distDict[strIdx][i] + H)
-        visited[i] = False
+    for i in milkRange:
+        if not visited[i]:
+            D = distDict[strIdx][i]
+            if D > M:
+                continue
+            visited[i] = True
+            dfs(i, cnt + 1, M - D + H)
+            visited[i] = False
+    if strIdx != -1 and distDict[-1][strIdx] <= M:
+        answer = answer if answer > cnt else cnt
 
 dfs(startIdx, 0, M)
 print(answer)
