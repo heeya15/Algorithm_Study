@@ -40,19 +40,17 @@ public class Main_G5_15683_감시 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-
-		N = Integer.parseInt(st.nextToken()); // 맵 크기 및 ( 1번 부터 N번까지 번호 )
-		M = Integer.parseInt(st.nextToken()); // 파이어볼 개수
+		// 사무실의 세로 크기 N과 가로 크기 M 입력
+		N = Integer.parseInt(st.nextToken()); 
+		M = Integer.parseInt(st.nextToken()); 
 		map = new int[N][M];
 		cctvList = new ArrayList<>();
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			for (int j = 0; j < M; j++) {
 				int area = Integer.parseInt(st.nextToken());
-				// CCTV 정보
-				if (area > 0 && area < 6)
-					cctvList.add(new CCTV(area, i, j));
-
+				// CCTV 정보 1~ 5번 CCTV
+				if (area > 0 && area < 6) cctvList.add(new CCTV(area, i, j));
 				map[i][j] = area;
 			}
 		}
