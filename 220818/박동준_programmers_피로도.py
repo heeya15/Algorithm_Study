@@ -16,7 +16,6 @@ def recur(cur,end,arr,combi,visit):
 
 def solution(k, dungeons):
     answer = -1
-    # 순서가 있는 조합
     combi =[]
     end = len(dungeons)
     visit = [0]*end
