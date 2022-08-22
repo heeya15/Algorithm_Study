@@ -13,7 +13,6 @@ import java.io.*;
 public class Main_S1_16198_에너지모으기 {
 	static int N, result ;
 	static ArrayList<Integer>list;
-	static boolean [] visited;
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		N = Integer.parseInt(br.readLine()); // 구슬의 개수 입력
