@@ -1,29 +1,35 @@
 
 N = int(input())
+S, W = [0]*N, [0]*N
 
-eggs = []
+for i in range(N):
+    S[i], W[i] = map(int, input().split())
+
 brokenNum = 0
-pickEgg = [(), ()]
-
-for _ in range(N):
-    a, b = map(int, input().split())
-    eggs.append((a, b))
-
-def combination(cnt, start):
+def pick(idx, eggsW):
     global brokenNum
-    if cnt == 2:
-        if pickEgg[0][0] <= pickEgg[1][1]:
-            brokenNum += 1
-        if pickEgg[1][0] <= pickEgg[0][1]:
-            brokenNum += 1
+    if idx == N:
+        cnt = 0
+        for eggW in eggsW:
+            if eggW <= 0:
+                cnt += 1
+        brokenNum = max(cnt, brokenNum)
         return
-    if start == N:
-        return
-    pickEgg[cnt] = eggs[start]
 
-    combination(cnt+1, start+1)
-    combination(cnt + 1, start)
+    if eggsW[idx] > 0:
+        flag = False
+        for i in range(N):
+            if eggsW[i] < 1 or i == idx:
+                continue
+            flag = True
+            tmp = eggsW[:]
+            tmp[i] -= W[idx]
+            tmp[idx] -= W[i]
+            pick(idx + 1, tmp)
+        if not flag:
+            pick(idx + 1, eggsW)
+    else:
+        pick(idx+1, eggsW)
 
-
-combination(0, 0)
+pick(0, S)
 print(brokenNum)
