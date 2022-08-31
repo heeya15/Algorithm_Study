@@ -12,7 +12,7 @@ public class Lv1_성격유형검사하기 {
 	public static void main(String[] args) {
 		String[] survey = { "AN", "CF", "MJ", "RT", "NA" };
 		int[] choices = { 5, 3, 2, 7, 5 };
-		System.out.println(solution(survey,choices)); // 답 : 2
+		System.out.println(solution(survey,choices)); // 답 : TCMA
 	}
 
 	 // 질문 마다 [ 판단하는 지표를 ] 담은 1차원 문자열 배열, [ 선택한 선택지를 ] 담은 1차원 정수 배열
