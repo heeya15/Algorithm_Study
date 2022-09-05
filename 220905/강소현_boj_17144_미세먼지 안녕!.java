@@ -94,10 +94,14 @@ public class boj_17144 {
 	
 
 	
-	static private void up() { // 공기청정기 작동
+	static private void up() { // 위쪽 공기청정기 작동
 		
 		int[][] airCopy = new int[R][C];
-		copy(airCopy, air);
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				airCopy[i][j] = air[i][j];
+			}
+		}
 		
 		int cleanerR = airCleaner[0]; // 위쪽 공기 청정기 위치
 		int cleanerC = 1; // 공기 청정기 순환하는 방향 바로 첫 위치 
@@ -122,7 +126,7 @@ public class boj_17144 {
 		}
 	}
 	
-	static private void down() {
+	static private void down() { // 아래쪽 공기청정기 작동
 		
 		int[][] airCopy = new int[R][C];
 		copy(airCopy, air);
@@ -167,15 +171,7 @@ public class boj_17144 {
 	static private boolean isRange(int r, int c) {
 		return r >= 0 && r < R && c >= 0 && c < C;
 	}
-	
-	static private void copy(int[][] airCopy, int[][] map) {
-		for (int i = 0; i < R; i++) {
-			for (int j = 0; j < C; j++) {
-				airCopy[i][j] = map[i][j];
-			}
-		}
-	}
-	
+
 	static class Node{
 		int r, c, amount;
 		public Node(int r, int c, int amount) {
