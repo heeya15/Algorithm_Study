@@ -129,7 +129,11 @@ public class boj_17144 {
 	static private void down() { // 아래쪽 공기청정기 작동
 		
 		int[][] airCopy = new int[R][C];
-		copy(airCopy, air);
+		for (int i = 0; i < R; i++) {
+			for (int j = 0; j < C; j++) {
+				airCopy[i][j] = air[i][j];
+			}
+		}
 		
 		int cleanerR = airCleaner[1]; // 아래쪽 공기청정기 위치
 		int cleanerC = 1; // 공기 청정기 순환하는 방향 바로 첫 위치 
