@@ -4,6 +4,35 @@
 # 시간안에 풀기: 실패
 # 해결 못한것들: 남은개수 쓰기 / -1 리턴 / 같은 점수차면 낮은수에 화살쓰기
 
+# 솔루션 코드
+def solution(n, info):
+    answer = []     # 답안 리스트
+    score = 0       # 어피치 라이언 점수차
+    mintotal = 100000000000  # 점수 같을 때 화살 낮은 것 비교용
+
+    def dfs(idx, remain, apeach, ryan, ans, total): # 인덱스, 남은수, 어피치 점수, 라이언 점수, 라이언화살리스트
+        nonlocal answer, score, mintotal
+
+        if idx > 10 and remain >= 0:                # 로직종료
+            if score <= ryan - apeach:              # 점수차가 같거나 큼
+                if score == ryan - apeach and total > mintotal:
+                    return             # 더 적은 점수 화살을 적게 맞춘 경우 그냥 넘어감
+                if remain:                          # 화살 남아있을때 모두 0점에 갱신
+                    ans[-1] += remain
+                mintotal = total  
+                score, answer = ryan - apeach, ans   # 점수차 새로 기록, 정답 갱신
+                if ans[5] == 2:
+                    print(ans)  
+                    print(total, mintotal)
+            return
+        point = 10-idx
+        if info[idx] < remain:
+            cnt = info[idx] + 1
+            dfs(idx+1, remain-cnt, apeach, ryan+point, ans+[cnt], total+(10**cnt)*point)  # 이번 점수 이길때
+        dfs(idx+1, remain, apeach+point if info[idx] else apeach, ryan, ans+[0], total)     # 이번 점수 질때
+
+    dfs(0, n, 0, 0, [], 0)
+    return answer if score else [-1]
 
 maxScore = 0
 isPick = [False] * 11
