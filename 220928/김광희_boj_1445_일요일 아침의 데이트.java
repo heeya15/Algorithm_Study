@@ -21,7 +21,7 @@ import java.io.*;
  *    < 쓰레기 옆을 지나가는 칸의 개수를 증가 >시켜 주고 맨 밖의 쓰레기가 존재하는지의 4방 탐색 for문으로 바로 이동시켜준다.
  * 3. 쓰레기도 밟지 않고, 쓰레기 옆을 지나가지도 않았다면 개수 증가 없이 "우선 순위 큐에 " 넣어줌
  * 4. 꽃이 있는 위치에 도착했다면 현재까지 쓰레기 밟은 횟수, 쓰레기 옆을 지나가는 칸의 개수를  
- *    min_garbage_count, min_next_count 변수에 넣어주고, while문 탐색 후 해당 변수를 출력해 준다.
+ *     min_garbage_count, min_next_count 변수에 넣어주고, while문 탐색 종료 후 해당 변수를 출력해 준다.
  */
 public class Main_G2_1445_일요일아침의데이트 {
 	public static class Node implements Comparable<Node>{
