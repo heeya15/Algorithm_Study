@@ -28,10 +28,11 @@ def findUnique(relation, keys):
     uniqueKeys = []
     subRelation = set()
     rSize = len(relation)
+    keySize = len(relation[0])
     for key in keys:
         subRelation.clear()
         for i in range(rSize):
-            subRelation.add(tuple(relation[i][k] for k in range(rSize) if k in key))
+            subRelation.add(tuple(relation[i][k] for k in range(keySize) if k in key))
         if len(subRelation) == rSize:
             uniqueKeys.append(key)
     return uniqueKeys
