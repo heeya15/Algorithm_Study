@@ -11,6 +11,5 @@ def solution(skill, skill_trees):
     for k in arr:
         if k in skill and skill[:len(k)] == k:
             count += 1
-            
-    print(count)
+
     return count
