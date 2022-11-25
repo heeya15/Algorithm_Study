@@ -2,56 +2,53 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+	static int confirm;
+	static int[] want; // 원하는 팀원
+	static boolean[] visited; // 이미 탐색한 인원
+	static boolean[] dontGo; // 팀 구성이 안되는 사람(한번더 탐색 방지)
 
 	public static void main(String[] args) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int t = Integer.parseInt(br.readLine());
-		while (t-- > 0) {
+
+		int T = Integer.parseInt(br.readLine());
+		while (T-- > 0) {
 			int n = Integer.parseInt(br.readLine());
-			boolean[] solo = new boolean[n + 1];
-			
-			// 인접리스트 생성
-			ArrayList<Integer>[] list = new ArrayList[n + 1];
-			for (int i = 1; i <= n; i++) list[i] = new ArrayList<>();
+			want = new int[n + 1];
+			visited = new boolean[n + 1];
+			dontGo = new boolean[n + 1];
 
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int i = 1; i <= n; i++) {
-				int next = Integer.parseInt(st.nextToken());
-				if (i == next) solo[i] = true;
-				else list[i].add(next);
+				want[i] = Integer.parseInt(st.nextToken());
 			}
 
-			int result = 0;
-
-			// i에서 출발해서 다시 돌아올 수 있는지 확인
-			// 돌아오지 못하면 팀이 없는 것
+			confirm = 0;
 			for (int i = 1; i <= n; i++) {
-				if (solo[i]) continue;
-
-				boolean isCan = false;
-				Queue<Integer> q = new LinkedList<>();
-				ArrayList<Integer> team = new ArrayList<>();
-
-				q.offer(i);
-				while (!q.isEmpty()) {
-					int cur = q.poll();
-					team.add(cur);
-					// System.out.println(cur);
-
-					for (int j = 0; j < list[cur].size(); j++) {
-						int next = list[cur].get(j);
-						if (next == i) isCan = true;
-						else q.offer(next);	
-					}
-				}
-				if (!isCan) result++;
-				else {
-					for (int member : team) solo[member] = true;
-				}
+				check(i);
 			}
-			sb.append(result + "\n");
+			sb.append(n - confirm + "\n");
 		}
 		System.out.println(sb);
+	}
+
+	static void check(int cur) {
+		if (visited[cur]) return;
+
+		visited[cur] = true;
+
+		// 방문하지 않았다면 끝까지 확인
+		if (!visited[want[cur]]) check(want[cur]);
+		// 이미 방문했던 곳을 재 방문하는 경우
+		// 사이클이 생성된 것이기 때문에 사이클(팀 인원)을 확인하고 수를 더해줌
+		else {
+			if (!dontGo[want[cur]]) {
+				confirm += 1;
+				for (int i = want[cur]; i != cur; i = want[i]) confirm += 1;
+			}
+		}
+
+		// 모든 확인이 끝난 학생이기 때문에 체크
+		dontGo[cur] = true;
 	}
 }
