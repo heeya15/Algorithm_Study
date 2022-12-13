@@ -6,8 +6,7 @@ class Solution {
     static Queue<Integer> truck = new LinkedList<>();
     static Queue<Integer> bridge = new LinkedList<>();
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        int answer = 0;
-        
+ 
         // truck 큐에 트럭 무게 담기
         for (int t : truck_weights) {
             truck.offer(t);
