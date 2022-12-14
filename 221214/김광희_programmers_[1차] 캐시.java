@@ -27,7 +27,8 @@ public class Lv2_1차캐시 {
 	static final int CACHE_MISS = 5;
 	public static void main(String[] args) {
 		String[] cities = { "Jeju", "Pangyo", "Seoul", "NewYork", "LA", "Jeju", "Pangyo", "Seoul", "NewYork", "LA" };
-		System.out.println(solution(3, cities)); // 답 : 1
+		System.out.println(solution(3, cities)); // 50
+		System.out.println(solution2(3, cities)); // 50
 	}
 	// 1번째 방법
 	public static int solution(int cacheSize, String[] cities) {
@@ -53,7 +54,7 @@ public class Lv2_1차캐시 {
 	}
 	
 	 // 2번째 방법 : 매개 변수 : 캐시 크기, 도시이름 배열
-    public int solution2(int cacheSize, String[] cities) {
+    public static int solution2(int cacheSize, String[] cities) {
         int answer = 0;
         if (cacheSize == 0) return cities.length * CACHE_MISS; // 0이면 무조건  MISS여서 모든 시간이 +5초
         LinkedList<String> cache = new LinkedList<>();
