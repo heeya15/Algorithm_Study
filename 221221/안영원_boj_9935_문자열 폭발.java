@@ -16,7 +16,7 @@ public class Main {
 			if (sb.length() >= bombWord.length()) {
 				boolean isBomb = true;
 
-                // 하나씩 비교하며 폭발 문자열인지 확인
+                		// 하나씩 비교하며 폭발 문자열인지 확인
 				for (int j = 0; j < bombWord.length(); j++) {
 					if (sb.charAt(sb.length() - bombWord.length() + j) != bombWord.charAt(j)) {
 						isBomb = false;
@@ -24,7 +24,7 @@ public class Main {
 					};
 				}
 
-                // 폭발 문자열이 확인되면 제거
+                		// 폭발 문자열이 확인되면 제거
 				if (isBomb) {
 					sb.delete(sb.length() - bombWord.length(), sb.length());
 				}
